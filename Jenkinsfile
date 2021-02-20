@@ -31,16 +31,17 @@ pipeline {
       steps {
 //        "docker build -t int28min/currency-exchange-devos:$env.BUIL_TAG"
           script {
-            dockerImage = docker.build("int28min/currency-exchange-devos:{$env.BUIL_TAG}")
+            dockerImage = docker.build("int28min/currency-exchange-devos:${env.BUIL_TAG}")
           }
       }
     }
     stage('Push Docker Image') {
       steps {
         script {
-            docker.withRegistry('', 'dockerhub');
-            dockerImage.push();
-            dockerImage.push('latest');
+            docker.withRegistry('', 'dockerhub') {
+              dockerImage.push();
+              dockerImage.push('latest');
+            }
           }
       }
     }
