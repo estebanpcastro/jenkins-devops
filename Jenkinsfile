@@ -1,14 +1,14 @@
-#node {
-#  stage('Build') {
-#    echo "Build"
-#  }
-#  stage('Test') {
-#    echo "Test"
-#  }
-#  stage('Integration stage') {
-#    echo "integretion stage"
-#  }
-#}
+//node {
+//  stage('Build') {
+//    echo "Build"
+//  }
+//  stage('Test') {
+//    echo "Test"
+//  }
+//  stage('Integration stage') {
+//    echo "integretion stage"
+//  }
+//}
 
 pipeline {
 //  agent {docker { image 'node:13.8'} }
