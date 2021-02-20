@@ -19,12 +19,12 @@ pipeline {
     PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
   }
   stages {
-    stage('Build) {
+    stage('Build') {
       steps {
         sh 'mvn --version'
         sh 'docker version'
         echo 'Build'
-        echo 'Path - $PATH'
+        echo "Path - $PATH"
       }
     }
   }
