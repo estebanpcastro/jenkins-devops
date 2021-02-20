@@ -16,15 +16,32 @@ pipeline {
   environment {
     dockerHome = tool 'myDocker'
     mavenHome = tool 'myMaven'
-    PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
+    //PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
   }
   stages {
     stage('Build') {
       steps {
-        sh 'mvn --version'
-        sh 'docker version'
+//        sh 'mvn --version'
+//        sh 'docker version'
         echo 'Build'
         echo "Path - $PATH"
+      }
+    }
+    stage('Build Docker Image') {
+      steps {
+//        "docker build -t int28min/currency-exchange-devos:$env.BUIL_TAG"
+          script {
+            dockerImage = docker.build("int28min/currency-exchange-devos:{$env.BUIL_TAG}")
+          }
+      }
+    }
+    stage('Push Docker Image') {
+      steps {
+        script {
+            docker.withRegistry('', 'dockerhub');
+            dockerImage.push();
+            dockerImage.push('latest');
+          }
       }
     }
   }
